@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text } from 'react-native'
+import { ScrollView } from 'react-native'
 import axios from 'axios'
 
 import AlbumDetail from './AlbumDetail'
@@ -19,9 +19,9 @@ const AlbumList = () => {
   }
 
   return (
-    <View>
+    <ScrollView>
       {renderAlbums()}
-    </View>
+    </ScrollView>
   )
 }
 
