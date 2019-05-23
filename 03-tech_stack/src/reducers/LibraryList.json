@@ -1,0 +1,11 @@
+[{
+    "id": 1,
+    "title": "Webpack",
+    "description": "Webpack is a module bundler. It packs CommonJs/AMD"
+  },
+  {
+    "id": 2,
+    "title": "React",
+    "description": "React makes it painless to create interactive UIs"
+  }
+]
