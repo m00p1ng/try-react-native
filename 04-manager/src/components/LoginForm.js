@@ -1,16 +1,33 @@
 import React from 'react'
+import { Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 
-import { emailChanged, passwordChanged } from '../actions'
-import { Button, Card, CardSection, Input } from './common'
+import { emailChanged, passwordChanged, loginUser } from '../actions'
+import { Button, Card, CardSection, Input, Spinner } from './common'
 
-const LoginForm = ({ email, emailChanged, password, passwordChanged }) => {
-  const onEmailChanged = (text) => {
-    emailChanged(text)
-  }
+const LoginForm = ({
+  email,
+  emailChanged,
+  password,
+  passwordChanged,
+  loginUser,
+  loading,
+  error,
+}) => {
+  const onEmailChanged = (text) => emailChanged(text)
+  const onPasswordChanged = (text) => passwordChanged(text)
+  const onButtonPress = () => loginUser({ email, password })
 
-  const onPasswordChanged = (text) => {
-    passwordChanged(text)
+  const renderButton = () => {
+    if (loading) {
+      return <Spinner size="large" />
+    }
+
+    return (
+      <Button onPress={onButtonPress}>
+        Log in
+      </Button>
+    )
   }
 
   return (
@@ -35,20 +52,36 @@ const LoginForm = ({ email, emailChanged, password, passwordChanged }) => {
         />
       </CardSection>
 
+      <Text style={styles.errorTextStyle}>
+        {error}
+      </Text>
+
       <CardSection>
-        <Button>
-          Log in
-        </Button>
+
+        {renderButton()}
       </CardSection>
     </Card>
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    email: state.auth.email,
-    password: state.auth.password,
+const styles = StyleSheet.create({
+  errorTextStyle: {
+    fontSize: 20,
+    alignSelf: 'center',
+    color: 'red',
   }
+})
+
+const mapStateToProps = ({ auth }) => {
+  const { email, password, error, loading } = auth
+  return { email, password, error, loading }
 }
 
-export default connect(mapStateToProps, { emailChanged, passwordChanged })(LoginForm)
+export default connect(
+  mapStateToProps,
+  {
+    emailChanged,
+    passwordChanged,
+    loginUser,
+  }
+)(LoginForm)
