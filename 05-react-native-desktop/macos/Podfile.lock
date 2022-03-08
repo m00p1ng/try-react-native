@@ -254,6 +254,8 @@ PODS:
   - React-jsinspector (0.64.29)
   - react-native-safe-area-context (3.4.1):
     - React-Core
+  - react-native-webview (11.17.2):
+    - React-Core
   - React-perflogger (0.64.29)
   - React-RCTActionSheet (0.64.29):
     - React-Core/RCTActionSheetHeaders (= 0.64.29)
@@ -364,6 +366,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native-macos/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native-macos/ReactCommon/jsinspector`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
+  - react-native-webview (from `../node_modules/react-native-webview`)
   - React-perflogger (from `../node_modules/react-native-macos/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native-macos/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native-macos/Libraries/NativeAnimation`)
@@ -428,6 +431,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-macos/ReactCommon/jsinspector"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
+  react-native-webview:
+    :path: "../node_modules/react-native-webview"
   React-perflogger:
     :path: "../node_modules/react-native-macos/ReactCommon/reactperflogger"
   React-RCTActionSheet:
@@ -485,6 +490,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: d1790edb4148fb29d17d826d982c8a108a003a08
   React-jsinspector: f69021291833f1cd7faa0a7e9864faba31adb5a0
   react-native-safe-area-context: 9e40fb181dac02619414ba1294d6c2a807056ab9
+  react-native-webview: 380c1a03ec94b7ed764dac8db1e7c9952d08c93a
   React-perflogger: 824957ddfc695e682fa516837fa9a2fea779ef80
   React-RCTActionSheet: 8d376c9d63077ead01cf2b72cf03f9e89f2eec3a
   React-RCTAnimation: d73e1c0a2556cb797dfd864391a52051467a10c7

@@ -22,6 +22,8 @@
     "react-native-macos": "^0.64.0-0",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.13.1",
+    "react-native-vector-icons": "^9.1.0",
+    "react-native-webview": "^11.17.2",
     "tailwind-rn": "^3.0.0",
     "tailwindcss": "^3.0.23"
   },
@@ -31,6 +33,7 @@
     "@react-native-community/eslint-config": "^2.0.0",
     "@types/react": "^17.0.39",
     "@types/react-native": "^0.67.2",
+    "@types/react-native-vector-icons": "^6.4.10",
     "babel-jest": "^26.6.3",
     "babel-plugin-module-resolver": "^4.1.0",
     "eslint": "7.14.0",
