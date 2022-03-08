@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { observer } from 'mobx-react-lite'
-import { View, Text, TextInput, TouchableOpacity } from 'react-native'
+import {
+  FlatList,
+  ListRenderItemInfo,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native'
 import { useStore } from 'Store'
 import tw from 'tailwind-rn'
 import { useDynamicColor } from 'libs'
 import { Button } from 'components/button.component'
 import { useNavigation } from '@react-navigation/native'
+import { IBook } from 'stores'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 interface IProps {}
 
@@ -17,20 +26,29 @@ export const BooksContainer = observer((props: IProps) => {
 
   useEffect(() => {
     root.ui.fetchBooks()
-  }, []) 
+  }, [])
 
   const placeHolderBackground = dc('bg-black', 'bg-white')
 
+  const renderBook = ({ item }: ListRenderItemInfo<IBook>) => {
+    return (
+      <TouchableOpacity key={item.createdAt} onPress={() => navigation.navigate('Book', { title: item.title})}>
+        <View style={tw('py-1 flex-row')}>
+          <Icon name="book" />
+          <Text style={tw('text-sm')}>{item.title}</Text>
+        </View>
+      </TouchableOpacity>
+    )
+  }
+
   return (
-    <View style={tw('p-3')}>
+    <View style={tw('p-3 flex-1')}>
       <Text style={tw('font-bold')}>My favorite book</Text>
-      {root.ui.uppercasedBooks.map((book: any) => (
-        <TouchableOpacity key={book.createdAt} onPress={() => navigation.navigate('Book', { title: book.title})}>
-          <View style={tw('py-1')}>
-            <Text style={tw('text-sm')}>{book.title}</Text>
-          </View>
-        </TouchableOpacity>
-      ))}
+      <FlatList
+        data={root.ui.books}
+        renderItem={renderBook}
+        keyExtractor={(book) => book.title}
+      />
 
       <Text style={tw('font-bold mt-6 mb-2')}>New book</Text>
       <View style={tw('flex-row')}>

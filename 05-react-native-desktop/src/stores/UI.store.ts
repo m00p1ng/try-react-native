@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction } from 'mobx'
 import { IRootStore } from '../Store'
 
-interface IBook {
+export interface IBook {
   title: string,
   createdAt: string,
 }
