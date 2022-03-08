@@ -1,5 +1,6 @@
+import { NavigationContainer } from '@react-navigation/native'
 import React from 'react'
-import {Books} from 'containers'
+import { Routes } from 'Routes'
 import { root, StoreProvider } from 'Store'
 
 interface IProps {}
@@ -7,7 +8,9 @@ interface IProps {}
 export const App = (props: IProps) => {
   return (
     <StoreProvider value={root}>
-      <Books />
+      <NavigationContainer>
+        <Routes />
+      </NavigationContainer>
     </StoreProvider>
   )
 }
