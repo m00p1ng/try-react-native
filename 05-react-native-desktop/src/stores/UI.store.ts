@@ -1,5 +1,6 @@
-import { makeAutoObservable, runInAction } from 'mobx'
+import { autorun, makeAutoObservable, runInAction, toJS } from 'mobx'
 import { IRootStore } from '../Store'
+import { reactNativeDesktopNative } from 'libs'
 
 export interface IBook {
   title: string,
@@ -7,6 +8,26 @@ export interface IBook {
 }
 
 export let createUIStore = (root: IRootStore) => {
+  const persist = async () => {
+    const plainState = toJS(store)
+    await reactNativeDesktopNative.keychainWrite('state', JSON.stringify(plainState))
+  }
+
+  const hydrate = async () => {
+    let stringState = await reactNativeDesktopNative.keychainRead('state')
+
+    if (stringState) {
+      let parsedStore = JSON.parse(stringState)
+
+      runInAction(() => {
+        store.books = parsedStore.books.map((book: any) => ({
+          title: book.title,
+          date: new Date(book.date)
+        }))
+      })
+    }
+  }
+
   let store = makeAutoObservable({
     books: [] as IBook[],
     get uppercasedBooks(): IBook[] {
@@ -31,6 +52,10 @@ export let createUIStore = (root: IRootStore) => {
         store.books = books
       })
     }
+  })
+
+  hydrate().then(() => {
+    autorun(persist)
   })
 
   return store

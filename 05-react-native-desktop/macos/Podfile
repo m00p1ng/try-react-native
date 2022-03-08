@@ -15,6 +15,7 @@ target 'react_native_desktop-macOS' do
   )
 
   # Pods specifically for macOS target
+  pod 'KeychainAccess'
 end
 
 target 'react_native_desktop-iOS' do
