@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   TouchableOpacityProps,
   StyleProp,
@@ -16,15 +16,21 @@ interface IProps extends TouchableOpacityProps {
 }
 
 export const Button = ({ title, style, type, ...props }: IProps) => {
+  const [isHovered, setIsHovered] = useState(false)
   const styles = {
     primary: `bg-green-300 p-3 w-24 items-center`,
     secondary: `bg-blue-500 p-3 w-24 items-center`
   }
 
   return (
-    <TouchableOpacity {...props}>
+    <TouchableOpacity
+      {...props}
+      // @ts-ignore
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <View style={[tw(styles[type]), style]}>
-        <Text style={tw('text-white')}>{title}</Text>
+        <Text style={tw(`text-white ${isHovered ? 'font-bold' : ''}`)}>{title}</Text>
       </View>
     </TouchableOpacity>
   )

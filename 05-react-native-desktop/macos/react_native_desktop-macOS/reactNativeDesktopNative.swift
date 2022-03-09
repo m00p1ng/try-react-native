@@ -21,4 +21,12 @@ class ReactNativeDesktopNative: NSObject {
     let value = keychain[key as String]
     return resolve(value)
   }
+  
+  @objc
+  func closeApp() {
+    DispatchQueue.main.async {
+      let appDelegate = NSApp.delegate as? AppDelegate
+      appDelegate?.closeApp()
+    }
+  }
 }

@@ -8,13 +8,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
-import { useStore } from 'Store'
 import tw from 'tailwind-rn'
-import { useDynamicColor } from 'libs'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+
+import { useStore } from 'Store'
+import { useDynamicColor, reactNativeDesktopNative } from 'libs'
 import { Button } from 'components/button.component'
 import { useNavigation } from '@react-navigation/native'
 import { IBook } from 'stores'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 interface IProps {}
 
@@ -32,7 +33,11 @@ export const BooksContainer = observer((props: IProps) => {
 
   const renderBook = ({ item }: ListRenderItemInfo<IBook>) => {
     return (
-      <TouchableOpacity key={item.createdAt} onPress={() => navigation.navigate('Book', { title: item.title})}>
+      <TouchableOpacity 
+        // @ts-ignore
+        enableFocusRing={false}
+        onPress={() => navigation.navigate('Book', { title: item.title})}
+      >
         <View style={tw('py-1 flex-row')}>
           <Icon name="book" />
           <Text style={tw('text-sm')}>{item.title}</Text>
@@ -60,6 +65,7 @@ export const BooksContainer = observer((props: IProps) => {
         />
         <Button title="Add" type="primary" onPress={() => root.ui.addBook(title)} />
       </View>
+      <Button title="Quit" type="primary" onPress={reactNativeDesktopNative.closeApp} />
     </View>
   )
 })
