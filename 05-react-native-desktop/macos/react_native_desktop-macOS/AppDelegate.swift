@@ -4,55 +4,50 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
   var popover: NSPopover!
-  var window: NSWindow!
+  var devWindow: NSWindow!
   var statusBarItem: NSStatusItem!
   
+  var reactNativeBridge: ReactNativeBridge!
+  var window: NSWindow?
+  
   func applicationDidFinishLaunching(_ aNotification: Notification) {
-    let jsCodeLocation: URL
+    reactNativeBridge = ReactNativeBridge()
     
-    #if DEBUG
-      jsCodeLocation = RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index", fallbackResource:nil)
-    #else
-      jsCodeLocation = Bundle.main.url(forResource: "main", withExtension: "jsbundle")!
-    #endif
-    let rootView = RCTRootView(bundleURL: jsCodeLocation, moduleName: "react_native_desktop", initialProperties: nil, launchOptions: nil)
-    let rootViewController = NSViewController()
-    rootViewController.view = rootView
+    let popoverController = ReactViewController(moduleName: "react_native_desktop", bridge: reactNativeBridge.bridge)
     
     popover = NSPopover()
-    
+    popover.contentViewController = popoverController
     popover.contentSize = NSSize(width: 700, height: 800)
     popover.animates = true
     popover.behavior = .transient
-    popover.contentViewController = rootViewController
     
     statusBarItem = NSStatusBar.system.statusItem(withLength: CGFloat(60))
     
     if let button = self.statusBarItem.button {
       button.action = #selector(togglePopover(_:))
-      button.title = "buildingApps"
+      button.title = "m00p1ng"
     }
     
     #if DEBUG
-    window = NSWindow(
+    devWindow = NSWindow(
       contentRect: NSRect(x: 0, y: 0, width: 1, height: 1),
       styleMask: [.titled, .closable, .miniaturizable, .resizable],
       backing: .buffered,
       defer: false
     )
     
-    window.contentViewController = rootViewController
-    window.center()
-    window.setFrameAutosaveName("Tempomat Main Window")
-    window.isReleasedWhenClosed = false
-    window.makeKeyAndOrderFront(self)
+    devWindow.contentViewController = popoverController
+    devWindow.center()
+    devWindow.setFrameAutosaveName("Tempomat Main Window")
+    devWindow.isReleasedWhenClosed = false
+    devWindow.makeKeyAndOrderFront(self)
     let screen: NSScreen = NSScreen.main!
     let midScreenX = screen.frame.midX
     let posScreenY = 200
     let origin = CGPoint(x: Int(midScreenX), y: posScreenY)
     let size = CGSize(width: 700, height: 800)
     let frame = NSRect(origin: origin, size: size)
-    window.setFrame(frame, display: true)
+    devWindow.setFrame(frame, display: true)
     #endif
   }
   
@@ -69,5 +64,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   
   func closeApp() {
     NSApp.terminate(nil)
+  }
+  
+  func openDesktopWindow() {
+    if (window == nil) {
+      let windowController = ReactViewController(moduleName: "react_native_desktop-window", bridge: reactNativeBridge.bridge)
+      window = NSWindow(
+            contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
+            styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
+            backing: .buffered, defer: false)
+      window!.contentViewController = windowController
+      window!.center()
+      window!.setFrameAutosaveName("React Native Desktop")
+      window!.isReleasedWhenClosed = false
+      window!.makeKeyAndOrderFront(self)
+      let screen: NSScreen = NSScreen.main!
+      let midScreenX = screen.frame.midX
+      let posScreenY = 200
+      let origin = CGPoint(x: Int(midScreenX), y: posScreenY)
+      let size = CGSize(width: 700, height: 800)
+      let frame = NSRect(origin: origin, size: size)
+      window!.setFrame(frame, display: true)
+    } else {
+      window!.makeKeyAndOrderFront(self)
+    }
   }
 }

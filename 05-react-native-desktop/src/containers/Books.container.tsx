@@ -33,7 +33,7 @@ export const BooksContainer = observer((props: IProps) => {
 
   const renderBook = ({ item }: ListRenderItemInfo<IBook>) => {
     return (
-      <TouchableOpacity 
+      <TouchableOpacity
         // @ts-ignore
         enableFocusRing={false}
         onPress={() => navigation.navigate('Book', { title: item.title})}
@@ -65,7 +65,19 @@ export const BooksContainer = observer((props: IProps) => {
         />
         <Button title="Add" type="primary" onPress={() => root.ui.addBook(title)} />
       </View>
-      <Button title="Quit" type="primary" onPress={reactNativeDesktopNative.closeApp} />
+      <View style={tw('p-3 flex-row')}>
+        <Button
+          title="Quit"
+          type="primary"
+          onPress={reactNativeDesktopNative.closeApp}
+        />
+        <Button
+          title="Desktop Window"
+          type="primary"
+          onPress={reactNativeDesktopNative.openDesktopWindow}
+          style={tw('ml-4')}
+        />
+      </View>
     </View>
   )
 })

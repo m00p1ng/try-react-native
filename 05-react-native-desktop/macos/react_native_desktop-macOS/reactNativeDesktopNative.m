@@ -8,4 +8,6 @@ RCT_EXTERN_METHOD(keychainRead: (NSString)key resolver:(RCTPromiseResolveBlock)r
 
 RCT_EXTERN_METHOD(closeApp)
 
+RCT_EXTERN_METHOD(openDesktopWindow)
+
 @end

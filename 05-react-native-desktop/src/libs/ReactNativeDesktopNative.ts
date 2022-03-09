@@ -4,6 +4,7 @@ interface IReactNativeDesktopNative {
   keychainWrite: (key: string, payload: string) => Promise<boolean>
   keychainRead: (key: string) => Promise<string>
   closeApp: () => void
+  openDesktopWindow: () => void
 }
 
 function createReactNativeDesktopNative(nativeModule: any): IReactNativeDesktopNative {
@@ -11,6 +12,7 @@ function createReactNativeDesktopNative(nativeModule: any): IReactNativeDesktopN
     keychainRead: nativeModule.keychainRead,
     keychainWrite: nativeModule.keychainWrite,
     closeApp: nativeModule.closeApp,
+    openDesktopWindow: nativeModule.openDesktopWindow,
   }
 }
 

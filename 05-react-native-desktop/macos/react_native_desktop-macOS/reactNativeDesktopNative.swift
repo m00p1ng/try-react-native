@@ -29,4 +29,12 @@ class ReactNativeDesktopNative: NSObject {
       appDelegate?.closeApp()
     }
   }
+  
+  @objc
+  func openDesktopWindow() {
+    DispatchQueue.main.async {
+      let appDelegate = NSApp.delegate as? AppDelegate
+      appDelegate?.openDesktopWindow()
+    }
+  }
 }

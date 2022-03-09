@@ -16,6 +16,8 @@
 		49B0307527D7CABE003913BC /* reactNativeDesktopNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B0307427D7CABE003913BC /* reactNativeDesktopNative.m */; };
 		49B0307727D7CC35003913BC /* reactNativeDesktopNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B0307627D7CC35003913BC /* reactNativeDesktopNative.swift */; };
 		49B0307927D7D2BA003913BC /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 49B0307827D7D2BA003913BC /* Fonts */; };
+		49E4618C27D9113900B9262C /* ReactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E4618B27D9113900B9262C /* ReactViewController.swift */; };
+		49E4618E27D9114E00B9262C /* ReactNativeBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E4618D27D9114E00B9262C /* ReactNativeBridge.swift */; };
 		514201522437B4B40078DB4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 514201512437B4B40078DB4F /* Assets.xcassets */; };
 		514201552437B4B40078DB4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 514201532437B4B40078DB4F /* Main.storyboard */; };
 		9AB94E4F9B3181C57549A889 /* libPods-react_native_desktop-macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B460B67561CCC14AF104688 /* libPods-react_native_desktop-macOS.a */; };
@@ -39,6 +41,8 @@
 		49B0307427D7CABE003913BC /* reactNativeDesktopNative.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = reactNativeDesktopNative.m; sourceTree = "<group>"; };
 		49B0307627D7CC35003913BC /* reactNativeDesktopNative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reactNativeDesktopNative.swift; sourceTree = "<group>"; };
 		49B0307827D7D2BA003913BC /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
+		49E4618B27D9113900B9262C /* ReactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactViewController.swift; sourceTree = "<group>"; };
+		49E4618D27D9114E00B9262C /* ReactNativeBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactNativeBridge.swift; sourceTree = "<group>"; };
 		514201492437B4B30078DB4F /* react_native_desktop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = react_native_desktop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		514201512437B4B40078DB4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		514201542437B4B40078DB4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -115,9 +119,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		49E4618A27D9112400B9262C /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				49E4618B27D9113900B9262C /* ReactViewController.swift */,
+				49E4618D27D9114E00B9262C /* ReactNativeBridge.swift */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
 		5142014A2437B4B30078DB4F /* react_native_desktop-macOS */ = {
 			isa = PBXGroup;
 			children = (
+				49E4618A27D9112400B9262C /* lib */,
 				49B0307827D7D2BA003913BC /* Fonts */,
 				38423A3E24576CBC00BC2EAC /* main.jsbundle */,
 				514201512437B4B40078DB4F /* Assets.xcassets */,
@@ -484,8 +498,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49E4618E27D9114E00B9262C /* ReactNativeBridge.swift in Sources */,
 				49B0307727D7CC35003913BC /* reactNativeDesktopNative.swift in Sources */,
 				49B0307527D7CABE003913BC /* reactNativeDesktopNative.m in Sources */,
+				49E4618C27D9113900B9262C /* ReactViewController.swift in Sources */,
 				49B0307327D7C23D003913BC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
